@@ -1,15 +1,1 @@
-app = "student-backend-app"   # change to unique name
 
-[build]
-  dockerfile = "Dockerfile"
-
-[http_service]
-  internal_port = 8080
-  force_https = true
-
-  [[http_service.checks]]
-    grace_period = "10s"
-    interval = "30s"
-    timeout = "5s"
-    method = "get"
-    path = "/health"
