@@ -1,8 +1,10 @@
 import streamlit as st
 import requests
 import os
-
-API_BASE = os.getenv("API_BASE", "http://backend:5000")
+from back4app_api import add_student, get_students
+from dotenv import load_dotenv
+load_dotenv()
+API_BASE = os.getenv("API_BASE", "https://python3tireapplication-eiam0jjb.b4a.run/")
 
 st.title("📚 Student Management Dashboard")
 
@@ -53,4 +55,5 @@ elif menu == "Add Note":
         if res.ok:
             st.success("Note added successfully!")
         else:
-            st.error("Failed to add note.")
+            st.error(f"Failed: {res.status_code}")
+            st.write(res.text)

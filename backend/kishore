@@ -1,4 +1,4 @@
-pipeline{	
+Xpipeline{	
 	a:xgent any{
 }
 }
