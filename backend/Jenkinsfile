@@ -1,0 +1,28 @@
+pipeline{
+	agent any
+	enviroment{
+	DOCKERHUB_CREDENTIALS = 'dockerhub-creds'
+	}
+   stages{
+	stage('Build the docker image'){
+		steps{
+		sh'docker build -t backend .'
+	 }
+	}
+	stage('Login to DockerHub') {
+            steps {
+                withCredentials([usernamePassword(
+                    credentialsId: 'dockerhub-creds',
+                    usernameVariable: 'USERNAME',
+                    passwordVariable: 'PASSWORD'
+                )]) {
+                    sh 'echo $PASSWORD | docker login -u $USERNAME --password-stdin'
+                }
+            }
+        }
+	stage('Push the docker image'){
+		steps{
+		    sh'docker push backend'
+}
+}
+}

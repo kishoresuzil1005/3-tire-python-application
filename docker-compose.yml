@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  backend:
+    build: ./backend
+    container_name: backend
+    ports:
+      - "5000:5000"
+    environment:
+      - MYSQL_HOST=your-rds-endpoint.cluster-xyz.us-east-1.rds.amazonaws.com
+      - MYSQL_USER=admin
+      - MYSQL_PASS=your_secure_password
+      - MYSQL_DB=studentdb
+      - MONGO_URI=mongodb+srv://user:pass@cluster0.mongodb.net/test
+
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    ports:
+      - "8501:8501"
+    environment:
+      - API_BASE=http://backend:5000
+    depends_on:
+      - backend
+

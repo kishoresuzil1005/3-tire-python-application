@@ -1,0 +1,16 @@
+pipeline{
+	agent any {
+	    stages{
+		stage{	
+		      steps{
+			sh 'docker build -t backend .'
+	}
+} 
+	 stage{
+		steps{
+		:x
+			
+	
+}
+}
+}
