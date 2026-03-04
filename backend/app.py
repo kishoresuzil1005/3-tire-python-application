@@ -41,19 +41,16 @@ def add_student():
     dept = data.get("department", "")
     year = data.get("year", 1)
     skills = data.get("skills", [])
-
-    # Insert in MySQL
     conn = get_mysql_conn()
     cursor = conn.cursor()
     cursor.execute(
-        "INSERT INTO students (name, email, department, year) VALUES (%s,%s,%s,%s)",
-        (name, email, dept, year)
-    )
+        "INSERT INTO students (name,email,department,year,skills) VALUES (%s,%s,%s,%s,%s)",
+        (name, email, dept, year, ",".join(skills))
+)
     conn.commit()
     mysql_id = cursor.lastrowid
     cursor.close()
     conn.close()
-
     # Insert in MongoDB
     profile = {
         "mysql_id": mysql_id,
