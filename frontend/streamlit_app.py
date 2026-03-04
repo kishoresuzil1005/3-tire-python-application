@@ -4,7 +4,7 @@ import os
 from back4app_api import add_student, get_students
 from dotenv import load_dotenv
 load_dotenv()
-API_BASE = os.getenv("API_BASE", "https://python3tireapplication-eiam0jjb.b4a.run/")
+API_BASE = os.getenv("API_BASE", "https://three-tire-python-application.onrender.com")
 
 st.title("📚 Student Management Dashboard")
 
