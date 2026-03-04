@@ -15,4 +15,4 @@ conn = mysql.connector.connect(
 )
 
 print("MySQL connected")
-conn.close()
+
